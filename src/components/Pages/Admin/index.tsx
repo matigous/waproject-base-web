@@ -1,15 +1,17 @@
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Drawer from 'components/Layout/Drawer';
 import AccountMultipleIcon from 'mdi-react/AccountMultipleIcon';
-import StarIcon from 'mdi-react/StarIcon';
+import CartIcon from 'mdi-react/CartIcon';
 import ViewDashboardIcon from 'mdi-react/ViewDashboardIcon';
 import React, { memo, useCallback, useRef, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 import DashboardIndexPage from './Dashboard';
-import SamplePage from './Sample';
+import OrderIndexPage from './Orders';
 import UserIndexPage from './Users';
 
+// import StarIcon from 'mdi-react/StarIcon';
+// import SamplePage from './Sample';
 export const ScrollTopContext = React.createContext<Function>(() => {});
 
 const useStyles = makeStyles(theme => ({
@@ -43,7 +45,8 @@ const AdminPage = memo((props: {}) => {
       // role: enRoles.admin,
       icon: AccountMultipleIcon
     },
-    { path: '/exemplos', display: 'Exemplos', icon: StarIcon }
+    // { path: '/exemplos', display: 'Exemplos', icon: StarIcon },
+    { path: '/orders', display: 'Pedidos', icon: CartIcon }
   ]);
 
   const scrollTop = useCallback(() => setTimeout(() => mainContent.current.scrollTo(0, 0), 100), []);
@@ -55,7 +58,8 @@ const AdminPage = memo((props: {}) => {
         <Drawer menu={menu}>
           <main ref={mainContent} className={classes.content}>
             <Switch>
-              <Route path='/exemplos' component={SamplePage} />
+              <Route path='/orders' component={OrderIndexPage} />
+              {/* <Route path='/exemplos' component={SamplePage} /> */}
               <Route path='/usuarios' component={UserIndexPage} />
               <Route path='/' component={DashboardIndexPage} />
               <Route render={renderRedirect} />

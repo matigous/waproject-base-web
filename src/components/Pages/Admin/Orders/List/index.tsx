@@ -67,7 +67,7 @@ const OrderListPage = memo(() => {
         <CardLoader show={loading} />
 
         <CardContent>
-          <Grid container justify='space-between' alignItems='center' spacing={2}>
+          <Grid container justify='space-between' alignItems='center' spacing={3}>
             <Grid item xs={12} sm={6} lg={4}>
               <SearchField paginationParams={params} onChange={mergeParams} />
             </Grid>

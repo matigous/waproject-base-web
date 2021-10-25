@@ -62,7 +62,7 @@ const FormDialog = memo((props: IProps) => {
     validationSchema,
     onSubmit(model) {
       model.userId = props.order ? props.order.userId : currentUserId;
-      model.quantity = model.quantity * 1;
+      model.quantity = Number(model.quantity);
       return orderService.save(model).pipe(
         tap(order => {
           Toast.show(`${order.description} foi salvo${model.id ? '' : '!'}`);
@@ -102,7 +102,7 @@ const FormDialog = memo((props: IProps) => {
                   <TextField label='Descrição' name='description' formik={formik} />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField label='Quantidade' name='quantity' formik={formik} />
+                  <TextField type='number' label='Quantidade' name='quantity' formik={formik} />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField mask='money' label='Preço Total' name='price' formik={formik} />
